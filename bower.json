@@ -1,0 +1,27 @@
+{
+  "name": "CoffeeMind",
+  "version": "0.0.1",
+  "authors": [
+    "AndreasAugustin <andy.augustin@t-online.de>"
+  ],
+  "description": "This project contains the game mastermind",
+  "main": "index.html",
+  "keywords": [
+    "mastermind",
+    "jquery",
+    "coffeescript",
+    "andreas",
+    "augustin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.1"
+  }
+}
