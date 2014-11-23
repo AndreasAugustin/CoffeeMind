@@ -5,6 +5,11 @@
   util = require('../src/attach.module.coffee');
 
   describe('Test for attaching modules', function() {
+    it('is possible to call namespace as function', function() {
+      var result;
+      result = typeof util.namespace;
+      return expect(result).toBe('function');
+    });
     return it('is able to create namespaces', function() {
       var result;
       result = util.namespace("App.test");

@@ -1,0 +1,97 @@
+/**! @copyright Copyright (c) 2014 Andreas Augustin
+/*               All rights reserved.
+/* @file coffeeMind.sass
+/* @company none
+/* @licence MIT licence.
+/* @author Andreas Augustin
+/* @email andy.augustin@t-online.de
+/**/
+
+#game
+  width: 100%
+  height: 5em
+
+/* use a smaller base size for smaller screens*/
+@media (max-device-width: 480px)
+  #game
+    font-size: 32px
+
+
+/* use a bigger base size for ipad and tablets */
+@media (min-device-width: 768px)
+  #game
+    font-size: 64px
+
+  #game-screen .game-board
+    margin: 0.75em
+
+  .jewel-size
+    font-size: 80px
+
+
+/* smartphone landscape */
+@media (orientation: landscape)
+  #splash-screen,
+  #main-menu
+    font-size: 1.0em
+    padding-top: 0.75em
+
+  ul.menu li
+    display: inline-block
+    margin: 0
+
+  ul.menu li button
+    margin: 0.5em
+    font-size: 0.5em
+
+  .image-size
+    font-size: 32px
+
+  #game-screen .game-board
+    float: left
+
+  #game-screen .game-info
+    width: auto
+    height: 2em
+    white-space: nowrap
+
+  #game-screen .game-info label
+    font-size: 0.5em
+
+  #game-screen .game-info .score
+    float: left
+    clear: both
+
+  #game-screen .time
+    font-size: 0.5em
+    margin: 0
+    float: left
+    width: 6.5em
+    /* vendor specific transforms */
+    -webkit-transform: rotate(-90deg) translate(-3em, -1.75em)
+    -moz-transform: rotate(-90deg) translate(-3em, -1.75em)
+    -ms-transform: rotate(-90deg) translate(-3em, -1.75em)
+    /* standard transform */
+    -transform: rotate(-90deg) translate(-3em, -1.75em)
+
+/* small screens landscape */
+@media (orientation: landscape) and (max-device-width: 480px)
+  ul.menu li button
+    font-size: 0.4em
+
+  .image-size
+    font-size: 24px
+
+
+/* tablets landscape */
+@media (orientation: landscape) and (min-device-width: 768px)
+  #splash-screen,
+  #main-menu
+    padding-top: 1.5em
+
+  #game-screen .game-board
+    margin: 0.25em
+
+  .jewel-size
+    font-size: 64px
+

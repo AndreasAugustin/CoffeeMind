@@ -2,13 +2,15 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/test/step_definitions/attach.module.step.js" />
+        <item url="file://$PROJECT_DIR$/features/step_definitions/attach.module.step.js" />
         <item url="file://$PROJECT_DIR$/gulpfile.js" />
+        <item url="file://$PROJECT_DIR$/spec/attach.moduleSpec.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/features/step_definitions/attach.module.step.js" />
       <root url="file://$PROJECT_DIR$/gulpfile.js" />
+      <root url="file://$PROJECT_DIR$/spec/attach.moduleSpec.js" />
     </CLASSES>
     <SOURCES />
   </library>

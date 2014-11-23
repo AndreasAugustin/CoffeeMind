@@ -10,6 +10,11 @@ util = require('../src/attach.module.coffee')
 
 describe 'Test for attaching modules', () ->
 
+  it 'is possible to call namespace as function', () ->
+    result = typeof util.namespace
+
+    expect(result).toBe 'function'
+
   it 'is able to create namespaces', () ->
     result = util.namespace("App.test")
 

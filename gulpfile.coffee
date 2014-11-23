@@ -15,23 +15,26 @@ runSequence = require 'run-sequence'
 shell = require 'gulp-shell'
 coffeelint = require 'gulp-coffeelint'
 cucumber = require 'gulp-cucumber'
+sass = require 'gulp-ruby-sass'
 
 config =
   src:
     main: ['src/**/*.coffee']
     spec: ['spec/**/*Spec.coffee']
     features: ['features/*']
-  dist:
+    styles: ['./styles/*.sass']
+  dest:
     folder: 'build'
     file: 'coffeeScript-namespace.js'
     minFile: 'coffeeScript-namespace.min.js'
+    styles: './build/styles'
 
 gulp.task 'default', () ->
   # todo
 
 # Minify and copy all JavaScript
 gulp.task 'scripts', () ->
-  gulp.src(config.src.main).pipe(coffee()).pipe(concat(config.dist.file)).pipe(gulp.dest(config.dist.folder))
+  gulp.src(config.src.main).pipe(coffee()).pipe(concat(config.dest.file)).pipe(gulp.dest(config.dest.folder))
 
 # runs jasmine-node tests
 gulp.task 'jasmine-node', ->
@@ -50,6 +53,12 @@ gulp.task 'coffee-lint', () ->
 # run cucumber tests
 gulp.task 'cucumber', () ->
   gulp.src(config.src.features).pipe(cucumber('steps': 'features/step_definitions/*.js'))
+
+# run sass engine
+gulp.task 'sass', () ->
+  gulp.src(config.src.styles)
+  .pipe(sass("sourcemap=none": true))
+  .pipe(gulp.dest(config.dest.styles))
 
 
 
