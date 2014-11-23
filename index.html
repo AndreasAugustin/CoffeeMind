@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Mastermind</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CoffeeMind</title>
+    <meta name="description" content="Contains the game CoffeeMind as single page application.">
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link rel="author" href="humans.txt" />
+
+    <link rel="stylesheet" href="./bower_components/normalize.css/normalize.css">
+    <link rel="stylesheet" href="./styles/coffeeMind.css">
+    <link rel="stylesheet"
+          href="./styles/coffeeMind.mobile.css"
+          media="screen and (max-device-width: 768px)
+                            and (orientation: portrait),
+                    screen and (max-device-width: 1024px)
+                            and (orientation:landscape)">
+
+    <script src="./bower_components/modernizr/modernizr.js"></script>
+
+    <script>window.jQuery || document.write('<script src="./bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="js/plugins.min.js"></script>
 </head>
 <body>
+    <div id="game">
+        <div class="background"></div>
+        <div class="screen" id="splash-screen">
+            <h1 class="logo">Master- <br> mind</h1>
+            <div class="progress">
+                <div class="indicator"></div>
+            </div>
+            <span class="continue">Click to continue</span>
+        </div>
 
+        <div class="screen" id="main-menu">
+            <h2 class="logo">Master- <br> mind</h2>
+            <ul class="menu">
+                <li><button name="game-screen">Play</button></li>
+                <li><button name="highscore">Highscore</button></li>
+                <li><button name="about">About</button></li>
+                <li><button name=exit-screen">Exit</button></li>
+            </ul>
+        </div>
+
+        <div class="screen" id="install-screen">
+            <h2 class="logo">Master- <br> mind</h2>
+                <span>
+                    Click the <i class="fa fa-download"></i> to install the game to your home screen.
+                </span>
+        </div>
+
+        <div class="screen" id="game-screen">
+            <div class="gameControls">
+                <div id="resetGame" ><i class="fa fa-refresh"></i></div>
+                <div id="checkColors"> <i class="fa fa-search"></i></div>
+                <div id="showSolution"><i class="fa fa-info"></i></div>
+            </div>
+            <div class="solution"></div>
+            <div class="game-board image-size">
+                <div class="announcement"></div>
+            </div>
+            <br>Available items:
+            <div class="availableItems"></div>
+            <div class="game-info">
+                <label class="level">Level: <span></span></label>
+                <Label class="score">Score:<span></span></Label>
+            </div>
+        </div>
+
+        <div class="screen" id="high-scores"></div>
+        <div id="image-proto" class="image-size"></div>
+    </div>
 </body>
 </html>

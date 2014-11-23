@@ -12,7 +12,6 @@ concat = require 'gulp-concat'
 jasmine = require 'gulp-jasmine'
 uglify = require 'gulp-uglify'
 runSequence = require 'run-sequence'
-shell = require 'gulp-shell'
 coffeelint = require 'gulp-coffeelint'
 cucumber = require 'gulp-cucumber'
 sass = require 'gulp-ruby-sass'
@@ -20,7 +19,7 @@ sass = require 'gulp-ruby-sass'
 config =
   src:
     main: ['src/**/*.coffee']
-    spec: ['spec/**/*Spec.coffee']
+    spec: ['spec/**/*Spec.js']
     features: ['features/*']
     styles: ['./styles/*.sass']
   dest:
@@ -37,12 +36,13 @@ gulp.task 'scripts', () ->
   gulp.src(config.src.main).pipe(coffee()).pipe(concat(config.dest.file)).pipe(gulp.dest(config.dest.folder))
 
 # runs jasmine-node tests
-gulp.task 'jasmine-node', ->
-  shell.task('jasmine-node --coffee spec/*Spec.coffee')
+gulp.task 'jasmine', ->
+  gulp.src(config.src.spec)
+  .pipe(jasmine())
 
 # run all specs
 gulp.task 'spec', (callback) ->
-  runSequence('jasmine-node', callback)
+  runSequence('jasmine', callback)
 
 # run coffee-lint
 gulp.task 'coffee-lint', () ->

@@ -1,0 +1,23 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <name> Andreas Augustin
+    <role> Developer
+    <twitter>
+    <Location>Germany
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+    <last update> 2014
+    <standards>   HTML5, CSS3
+    <components>  Normalize.css, jQuery, Modernizr
+    <software> coffeescript, SASS
+
+
+
+
