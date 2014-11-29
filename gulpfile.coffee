@@ -15,6 +15,7 @@ runSequence = require 'run-sequence'
 coffeelint = require 'gulp-coffeelint'
 cucumber = require 'gulp-cucumber'
 sass = require 'gulp-ruby-sass'
+notify = require 'gulp-notify'
 
 config =
   src:
@@ -39,6 +40,10 @@ gulp.task 'scripts', () ->
 gulp.task 'jasmine', ->
   gulp.src(config.src.spec)
   .pipe(jasmine())
+  .on 'error', notify.onError
+    title: 'Jasmine test failed'
+    message: 'One or more tests failed. See the cli for details.'
+
 
 # run all specs
 gulp.task 'spec', (callback) ->

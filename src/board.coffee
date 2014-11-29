@@ -6,22 +6,18 @@
 # @author andy
 # @email andy.augustin@t-online.de
 
+
+App = exports ? window
+
+App.coffeeMind = App.coffeeMind || {}
 ###*
 # The board namespace
 #
 # @method App.board
 # @return {Object} API functions.
-#
 ###
-App = exports ? window
+App.coffeeMind.board = do () ->
 
-App.board = (App) ->
-
-  settings =
-    availableColours: 0
-    baseScore: 0
-    numColors: 0
-    allowMultipleColors: false
   cols = 0
   rows = 0
   baseScore = 0
@@ -36,16 +32,22 @@ App.board = (App) ->
 
   ###*
   # @method init init the module
+  # @param {Object} options
+  #     @option {Int} rows
+  #     @option {Int} cols
+  #     @option {Int} availableColours
+  #     @option {Int} baseScore
+  #     @option {Int} numColors
+  #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method. Called at end of init.
   ###
-  init = (callback) ->
-    settings = App.settings
-    rows = settings.rows
-    cols = settings.cols
-    availableColoursCount = settings.availableColours
-    baseScore = settings.baseScore
-    numColors = settings.numColors
-    allowMultipleColor = settings.allowMultipleColors
+  init = (options, callback) ->
+    rows = options.rows
+    cols = options.cols
+    availableColoursCount = options.availableColours
+    baseScore = options.baseScore
+    numColors = options.numColors
+    allowMultipleColor = options.allowMultipleColors
     currentRow = rows-1
 
     setColors()
@@ -55,10 +57,15 @@ App.board = (App) ->
 
   ###*
   # @method reset resets the module to defaults
+  # @param {Object} options
+  #     @option {Int} availableColours
+  #     @option {Int} baseScore
+  #     @option {Int} numColors
+  #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method.
   ###
-  reset = (callback) ->
-    init(callback)
+  reset = (options, callback) ->
+    init(options, callback)
     return null
 
   ###*
