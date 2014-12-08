@@ -25,6 +25,7 @@ config =
     styles: ['./styles/*.sass']
     jquery: ['./bower_components/jquery/dist/jquery.js']
     normalize: ['./bower_components/normalize.css/normalize.css']
+    fontAwesome: ['./bower_components/font-awesome/css/font-awesome.css']
   dest:
     folder: 'build'
     file: 'coffeeScript-namespace.js'
@@ -40,6 +41,7 @@ gulp.task 'default', () ->
 gulp.task 'copyVendor', () ->
   gulp.src(config.src.jquery).pipe(gulp.dest(config.dest.srcScriptsVendor))
   gulp.src(config.src.normalize).pipe(gulp.dest(config.dest.srcStylesVendor))
+  gulp.src(config.src.fontAwesome).pipe(gulp.dest(config.dest.srcStylesVendor))
 
 # Minify and copy all JavaScript
 gulp.task 'scripts', () ->
