@@ -9,5 +9,9 @@ console.log "loading plugins.coffee"
 
 console.log Modernizr
 
+srcPath = "./src/"
+
+animationFramePath = srcPath + "scripts/requestAnimationFrame.js"
+
 Modernizr.load
-      load: "./src/requestAnimationFrame.js"
+      load:  animationFramePath

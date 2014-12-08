@@ -8,7 +8,7 @@
 
 require('../node_modules/gulp-coffee/node_modules/coffee-script/lib/coffee-script/register')
 
-Board = require('../src/board.coffee')
+App = require('../src/scripts/board.coffee')
 
 describe 'Test for the board', () ->
 
@@ -16,13 +16,14 @@ describe 'Test for the board', () ->
   settings = {}
 
   beforeEach ->
-    board = Board.board
+    board = App.coffeeMind.board
     settings.cols = 4
     settings.rows = 10
     settings.availableColours = 5
     settings.baseScore = 0
     settings.numColors = 4
     settings.allowMultipleColors = false
+    App.settings = settings
 
   it 'sets board', () ->
     expect(board).not.toBe undefined
@@ -47,9 +48,31 @@ describe 'Test for the board', () ->
     expect(solution).not.toBe undefined
     expect(Array.isArray(solution)).toBe true
     expect(solution.length).toBe settings.numColors
+    if solution.length > 0
+      expect(solution[0] >=0).toBeTruthy()
+      expect(solution[0] < settings.availableColours).toBeTruthy()
+
+  it para4 = "is possible to get the color at various positions", () ->
+    initBoard(para4)
+    x1 = 0
+    y1 = 0
+    result = board.getColor(x1, y1)
+
+    expect(result).toBe -1
+
+  it para5 = "is possible to set the next color", () ->
+    initBoard(para5)
+    x1 = 0
+    y1 = 0
+
+    board.nextColor(x1, y1)
+    result = board.getColor(x1, y1)
+
+    expect(result).toBe -1
+
 
   # Helper method to init the board
   initBoard = (logMessage) ->
-    return board.init settings, ->
+    return board.init () ->
       console.log logMessage + " callback called"
 

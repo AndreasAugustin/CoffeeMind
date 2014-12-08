@@ -30,13 +30,15 @@ describe 'Test for the board', () ->
         if err
           console.log err
         $ = window.jQuery
+        global.document = window.document
         done()
 
-    Input = require('../src/input.coffee')
-    input = Input.input
+    App = require('../src/scripts/input.coffee')
+    input = App.coffeeMind.input
 
   it 'sets input', () ->
     expect(input).not.toBe undefined
+
 
   it 'is possible to init the module', () ->
     result = initInput()
@@ -44,4 +46,4 @@ describe 'Test for the board', () ->
 
   # Helper method to init the board
   initInput = () ->
-    return input.init $, {}
+    return input.init $

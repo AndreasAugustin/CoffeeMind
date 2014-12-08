@@ -23,14 +23,23 @@ config =
     spec: ['spec/**/*Spec.js']
     features: ['features/*']
     styles: ['./styles/*.sass']
+    jquery: ['./bower_components/jquery/dist/jquery.js']
+    normalize: ['./bower_components/normalize.css/normalize.css']
   dest:
     folder: 'build'
     file: 'coffeeScript-namespace.js'
     minFile: 'coffeeScript-namespace.min.js'
     styles: './build/styles'
+    srcScriptsVendor: './src/scripts/vendor'
+    srcStylesVendor: './src/styles/vendor'
 
 gulp.task 'default', () ->
   # todo
+
+# copy vendor files
+gulp.task 'copyVendor', () ->
+  gulp.src(config.src.jquery).pipe(gulp.dest(config.dest.srcScriptsVendor))
+  gulp.src(config.src.normalize).pipe(gulp.dest(config.dest.srcStylesVendor))
 
 # Minify and copy all JavaScript
 gulp.task 'scripts', () ->

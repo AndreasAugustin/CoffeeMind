@@ -33,10 +33,11 @@ App.coffeeMind.input = do () ->
   # @method init
   # @param {Object} options
   ###
-  init = (options, $) ->
-    _options = $.extend {}, options
+  init = ($) ->
+    _options = App.settings
     _$ = $
     $board = _$("#game-screen .game-board")
+
     $board.bind "mousedown", (event) ->
       handleClick(event, "CLICK", event)
       return null
@@ -50,8 +51,9 @@ App.coffeeMind.input = do () ->
       if keyName && _options.controls[keyName]
         event.preventDefault()
         trigger(_options.controls[keyName])
-
       return null
+
+    return null
 
   ###
   # @method handleClick
@@ -74,8 +76,8 @@ App.coffeeMind.input = do () ->
     relX = click.clientX - rect.left
     relY = click.clientY - rect.top
     # coordinates
-    mastermindX = Math.floor(relX / (rect.width - imageSize) * settings.cols)
-    mastermindY = Math.floor(relY / rect.height * settings.rows)
+    mastermindX = Math.floor(relX / (rect.width - imageSize) * _options.cols)
+    mastermindY = Math.floor(relY / rect.height * _options.rows)
 
     # trigger functions bound to action
     trigger(action, mastermindX, mastermindY)

@@ -18,7 +18,9 @@ App.coffeeMind = App.coffeeMind || {}
 # @return {Object} API functions.
 ###
 App.coffeeMind.display = do () ->
+  _$ = {}
   canvas = {}
+  _options = {}
   ctx = {}
   cols = 0
   rows = 0
@@ -32,6 +34,7 @@ App.coffeeMind.display = do () ->
   animations = []  # array with pointer to animation functions
   images = []
   numColors = 0
+  srcPath = ""
 
   ###*
   # @method init init the module
@@ -45,18 +48,21 @@ App.coffeeMind.display = do () ->
   #     @options {Array} images
   #     @option {Boolean} allowMultipleColors
   ###
-  setup = (options, $) ->
-    $boardElement = $("#game-screen .game-board")
+  setup = ($) ->
+    _$ = $
+    _options = App.settings
+    $boardElement = _$("#game-screen .game-board")
 
-    cols = options.cols
-    rows = options.rows
-    numColors = options.numColors
-    availableColoursCount = options.availableColours
-    imageSize = options.imageSize
+    cols = _options.cols
+    rows = _options.rows
+    srcPath = _options.srcPath
+    numColors = _options.numColors
+    availableColoursCount = _options.availableColours
+    imageSize = _options.imageSize
 
     canvas = document.createElement("canvas")
     ctx = canvas.getContext("2d")
-    $(canvas).addClass("board")
+    _$(canvas).addClass("board")
     canvas.width = cols * imageSize + imageSize
     canvas.height = rows * imageSize
 
@@ -66,7 +72,7 @@ App.coffeeMind.display = do () ->
     createSolutionElement()
     createAvailableColoursElement()
 
-    images = options.images
+    images = _options.images
 
     previousCycle = Date.now()
     requestAnimationFrame(cycle)
@@ -121,30 +127,31 @@ App.coffeeMind.display = do () ->
   # @param {Time} time
   # @param {Time} lastTime
   ###
-  renderAnimation = (time, lastTime) ->
+  renderAnimations = (time, lastTime) ->
     anims = animations.slice(0) # slice first
     n = anims.length
 
-    for i in [0..n-1]
-      anim = anims[i]
-      if anim.fncs.before
-        anim.fncs.before(anim.pos)
+    if n > 0
+      for i in [0..n-1]
+        anim = anims[i]
+        if anim.fncs.before
+          anim.fncs.before(anim.pos)
 
-      anim.lastPos = anim.pos
-      animTime = (lastTime - anim.startTime)
-      anim.pos = animTime / anim.runTime
-      anim.pos = Math.max(0, Math.min(1, anim.pos))
+        anim.lastPos = anim.pos
+        animTime = (lastTime - anim.startTime)
+        anim.pos = animTime / anim.runTime
+        anim.pos = Math.max(0, Math.min(1, anim.pos))
 
-    animations = [] #reset animations list
-    for i in [0..n-1]
-      anim = anims[i]
-      anim.fncs.render(anim.pos, anim.pos - anim.lastPos)
-      if anim.pos is 1
-        if anim.fncs.done
-          anim.fncs.done()
+      animations = [] #reset animations list
+      for i in [0..n-1]
+        anim = anims[i]
+        anim.fncs.render(anim.pos, anim.pos - anim.lastPos)
+        if anim.pos is 1
+          if anim.fncs.done
+            anim.fncs.done()
 
-        else
-          animations.push(anim)
+          else
+            animations.push(anim)
 
     return null
 
@@ -152,7 +159,7 @@ App.coffeeMind.display = do () ->
   # @method createSolutionElement creates the solution element
   ###
   createSolutionElement = () ->
-    $solutionElement = @$("#game-screen .solution")
+    $solutionElement = _$("#game-screen .solution")
 
     solutionCanvas = document.createElement("canvas")
 
@@ -173,7 +180,7 @@ App.coffeeMind.display = do () ->
   # @method createAvailableColoursElement creates the available colours element
   ###
   createAvailableColoursElement = () ->
-    $availableColourElement = @$("#game-screen .availableItems")
+    $availableColourElement = _$("#game-screen .availableItems")
     availableColours = document.createElement("canvas")
 
     availableColorsCtx = availableColours.getContext("2d")
@@ -199,7 +206,7 @@ App.coffeeMind.display = do () ->
     background = document.createElement("canvas")
     bgCtx = background.getContext("2d")
 
-    $(background).addClass("background")
+    _$(background).addClass("background")
     background.width = cols* imageSize + imageSize
     background.height = rows * imageSize
 
@@ -225,8 +232,8 @@ App.coffeeMind.display = do () ->
   #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method. Called at end of init.
   ###
-  init = (options, callback) ->
-    setup(options)
+  init = ($, callback) ->
+    setup($)
     callback()
     return null
 
@@ -242,11 +249,12 @@ App.coffeeMind.display = do () ->
   #     @options {Array} images
   #     @option {Boolean} allowMultipleColors
   ###
-  reset = (options) ->
-    cols = options.cols;
-    rows = options.rows;
-    availableColoursCount = options.availableColours;
-    imageSize = options.imageSize;
+  reset = () ->
+    _options = App.settings
+    cols = _options.cols;
+    rows = _options.rows;
+    availableColoursCount = _options.availableColours;
+    imageSize = _options.imageSize;
     canvas.width = canvas.width; # to reset the canvas
 
     hideSolution();
@@ -276,7 +284,7 @@ App.coffeeMind.display = do () ->
   # @method drawAvailableColours draws the available colours
   ###
   drawAvailableColours = () ->
-    image = images["images/forms_" + imageSize + ".png"]
+    image = images[srcPath + "images/forms_" + imageSize + ".png"]
 
     for x in [0..availableColoursCount-1]
       availableColorsCtx.drawImage(image, x*imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
@@ -418,20 +426,20 @@ App.coffeeMind.display = do () ->
   ###
   # @method explode
   ###
-  explode = () ->
+  explode = (callback) ->
     alert 'game over man :('
-  return null
+    return null
 
   return {
-    init: init,
-    reset: reset,
-    myDrawImage: myDrawImage,
-    drawSolution: drawSolution,
-    drawAvailableColours: drawAvailableColours,
-    hideSolution: hideSolution,
-    drawCheckColors: drawCheckColors,
-    renderCursor: renderCursor,
-    unRenderCursor: unRenderCursor,
-    levelUp: levelUp,
+    init: init
+    reset: reset
+    myDrawImage: myDrawImage
+    drawSolution: drawSolution
+    drawAvailableColours: drawAvailableColours
+    hideSolution: hideSolution
+    drawCheckColors: drawCheckColors
+    renderCursor: renderCursor
+    unRenderCursor: unRenderCursor
+    levelUp: levelUp
     gameOver: gameOver
   }

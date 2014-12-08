@@ -18,6 +18,7 @@ App.coffeeMind = App.coffeeMind || {}
 ###
 App.coffeeMind.board = do () ->
 
+  _options = {}
   cols = 0
   rows = 0
   baseScore = 0
@@ -41,13 +42,14 @@ App.coffeeMind.board = do () ->
   #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method. Called at end of init.
   ###
-  init = (options, callback) ->
-    rows = options.rows
-    cols = options.cols
-    availableColoursCount = options.availableColours
-    baseScore = options.baseScore
-    numColors = options.numColors
-    allowMultipleColor = options.allowMultipleColors
+  init = (callback) ->
+    _options = App.settings
+    rows = _options.rows
+    cols = _options.cols
+    availableColoursCount = _options.availableColours
+    baseScore = _options.baseScore
+    numColors = _options.numColors
+    allowMultipleColor = _options.allowMultipleColors
     currentRow = rows-1
 
     setColors()
@@ -64,8 +66,8 @@ App.coffeeMind.board = do () ->
   #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method.
   ###
-  reset = (options, callback) ->
-    init(options, callback)
+  reset = (callback) ->
+    init(callback)
     return null
 
   ###*
@@ -192,7 +194,8 @@ App.coffeeMind.board = do () ->
   # @return {Int} the new color
   ###
   nextColor = (x, y) ->
-    return changeColor(x, y, 1)
+    changeColor(x, y, 1)
+    return null
 
   ###*
   # @method previousColor changes the selected color of a cell
@@ -202,7 +205,8 @@ App.coffeeMind.board = do () ->
   # @return {Int} the new color
   ###
   previousColor = (x, y) ->
-    return changeColor(x, y, -1)
+    changeColor(x, y, -1)
+    return null
 
   ###*
   # @method changeColor changes the color by a number
@@ -230,13 +234,14 @@ App.coffeeMind.board = do () ->
       return colors[y][x]
 
     if allowMultipleColor isnt true
-      while rowHasDifferentColors(colors[y], nextColor) isnt true
-        nextColor++
-        if (nextColor >= availableColoursCount)
+      _nextColor = currentColor
+      while rowHasDifferentColors(colors[y], _nextColor) isnt true
+        _nextColor++
+        if (_nextColor >= availableColoursCount)
           colors[y][x] = -1
           return colors[y][x]
 
-    colors[y][x] = nextColor
+    colors[y][x] = _nextColor
 
     return colors[y][x]
 
@@ -250,12 +255,12 @@ App.coffeeMind.board = do () ->
     return colors[y][x]
 
   return {
-    init: init,
-    print: print,
-    getSolution: getSolution,
-    nextColor: nextColor,
-    previousColor: previousColor,
-    checkColors: checkColors,
-    reset: reset,
+    init: init
+    print: print
+    getSolution: getSolution
+    nextColor: nextColor
+    previousColor: previousColor
+    checkColors: checkColors
+    reset: reset
     getColor: getColor
   }

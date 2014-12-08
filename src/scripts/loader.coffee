@@ -15,6 +15,19 @@ $ = jQuery
 ###
 App.coffeeMind = do () ->
 
+  srcPath = "./src/"
+
+  screenSplashPath = "loader!" + srcPath + "scripts/screen.splash.js"
+  installScreenPath = "loader!" + srcPath + "scripts/screen.install.js"
+
+  gamePath = "loader!" + srcPath + "scripts/game.js"
+
+  boardPath = "loader!" + srcPath + "scripts/board.js"
+  inputPath = "loader!" + srcPath + "scripts/input.js"
+  mainMenuPath = "loader!" + srcPath + "scripts/screen.main-menu.js"
+  displayCanvasPath = "loader!" + srcPath + "scripts/display.canvas.js"
+  gameScreenPath = "loader!" + srcPath + "scripts/screen.game.js"
+
   settings =
     rows: 10
     cols: 4
@@ -36,7 +49,8 @@ App.coffeeMind = do () ->
       KEY_SPACE: "getSolution"
       CLICK: "nextColor"
       TOUCH: "nextColor"
-  images = {}
+    images: {}
+    srcPath: srcPath
 
   App.settings = settings
 
@@ -65,7 +79,7 @@ App.coffeeMind = do () ->
     if isImage
       image = new Image()
       image.src = resource.url
-      images[resource.url] = image
+      settings.images[resource.url] = image
 
     return resource
 
@@ -83,12 +97,13 @@ App.coffeeMind = do () ->
       return 0
 
   console.log "started loading stage 1"
+
   # loading stage 1
   Modernizr.load
-    load: ["loader!src/game.js"]
+    load: [gamePath]
     test: Modernizr.standalone
-    yep: "loader!src/screen.splash.js"
-    nope: "loader!src/screen.install.js"
+    yep: screenSplashPath
+    nope: installScreenPath
     complete: () ->
       App.coffeeMind.game.setup(settings, $)
       if Modernizr.standalone
@@ -101,16 +116,19 @@ App.coffeeMind = do () ->
       console.log("stage 1 loaded")
 
   console.log "started loading stage 2"
+
   # loading stage 2
+  imagesPath = "loader!" + srcPath + "images/forms_" + settings.imageSize + ".png"
+
   if Modernizr.standalone
     Modernizr.load
-      load : ["loader!src/board.js"]
       load: [
-          "loader!src/input.js",
-          "loader!src/screen.main-menu.js",
-          "loader!src/display.canvas.js",
-          "loader!src/screen.game.js",
-          "loader!images/forms_" + settings.imageSize + ".png"
+          boardPath
+          inputPath
+          mainMenuPath
+          displayCanvasPath
+          gameScreenPath
+          imagesPath
       ],
       complete: () ->
         console.log "stage 2 loaded"

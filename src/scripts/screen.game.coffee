@@ -38,7 +38,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
     cols = _options.cols
     rows = _options.rows
 
-    input.init(_options, _$)
+    input.init(_$)
     input.bind("nextColor", nextColor)
     input.bind("previousColor", previousColor)
     input.bind("moveLeft", moveLeft)
@@ -136,7 +136,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
     board.init () ->
       # start the game
-      display.init () ->
+      display.init _$, () ->
         board.print()
         display.drawAvailableColours()
         advanceLevel()
@@ -201,10 +201,16 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
     return null
 
+  ###
+  # @method getSolution
+  ###
   getSolution = () ->
     display.drawSolution(board.getSolution())
     return null
 
+  ###
+  # @method bindButton
+  ###
   bindButtons = () ->
     # checks if the chosen colors are right
     _$("#checkColors").bind 'click', () ->
@@ -223,6 +229,9 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
     return null
 
+  ###
+  # @method reset
+  ###
   reset = () ->
     resetCursor()
     board.reset () ->
@@ -240,6 +249,11 @@ App.coffeeMind.screens["game-screen"] = do () ->
     startGame()
     return null
 
+  ###
+  # @method nextColor
+  # @param {Int} x
+  # @param {Int} y
+  ###
   nextColor = (x, y) ->
     if isNaN(x) || isNaN(y)
       x = cursor.x
@@ -254,9 +268,14 @@ App.coffeeMind.screens["game-screen"] = do () ->
     display.myDrawImage(x, y, color)
     unRenderCursor()
     setCursor(x, y)
-    console.log("Color increased at: Column: " + x + "Row: " + y + "New color: " + color);
+    console.log("screen.game nextColor: Color increased at: Column: " + x + "Row: " + y + "New color: " + color);
     return null
 
+  ###
+  # @method nextColor
+  # @param {Int} x
+  # @param {Int} y
+  ###
   nextColor = (x, y) ->
     if isNaN(x) || isNaN(y)
       x = cursor.x
@@ -270,14 +289,23 @@ App.coffeeMind.screens["game-screen"] = do () ->
     display.myDrawImage(x, y, color)
     unRenderCursor()
     setCursor(x, y)
-    # console.log("Color increased at: Column: " + x + "Row: " + y + "New color: " + color)
+    console.log("screen.game nextColor: Color increased at: Column: " + x + "Row: " + y + "New color: " + color)
     return null
 
+
+  ###
+  # @method unRenderCursor
+  ###
   unRenderCursor = () ->
     x = cursor.x
     y = cursor.y
     display.unRenderCursor(x, y, board.getColor(x, y))
 
+  ###
+  # @method previousColor
+  # @param {Int} x
+  # @param {Int} y
+  ###
   previousColor = (x, y) ->
     if(!x || !y)
       x = cursor.x
@@ -287,24 +315,38 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
     color =  board.previousColor(x, y)
     display.myDrawImage(x, y, color)
-    # console.log("Color decreased at: Column: " + x + "Row: " + y + "New color: " + color)
+    console.log("Screen.game previousColor: Color decreased at: Column: " + x + "Row: " + y + "New color: " + color)
     return null
 
+  ###
+  # @method moveRight
+  ###
   moveRight = () ->
     unRenderCursor()
     moveCursor(1,0)
     return null
 
+  ###
+  # @method moveLeft
+  ###
   moveLeft = () ->
     unRenderCursor()
     moveCursor(-1,0)
     return null
 
+  ###
+  # @method moveUp
+  ###
   moveUp = () ->
     unRenderCursor()
     setCursor(0, cursor.y-1)
     return null
 
+  ###
+  # @method moveCursor
+  # @param {Int} x
+  # @param {Int} y
+  ###
   moveCursor = (x, y) ->
     x += cursor.x
     y += cursor.y
@@ -312,6 +354,11 @@ App.coffeeMind.screens["game-screen"] = do () ->
     setCursor(x, y)
     return null
 
+  ###
+  # @method setCursor sets the current cursor position.
+  # @param {Int} x
+  # @param {Int} y
+  ###
   setCursor = (x, y) ->
     # check if cursor exists
     if !cursor
@@ -324,7 +371,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
       cursor.y = y
 
     display.renderCursor(x, y, 0.8)
-    # console.log("Cursor set: column: " + cursor.x + "Row: " + cursor.y);
+    console.log("Cursor set: column: " + cursor.x + "Row: " + cursor.y);
     return null
 
   return {
