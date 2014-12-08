@@ -15,7 +15,7 @@ $ = jQuery
 ###
 App.coffeeMind = do () ->
 
-  srcPath = "./src/"
+  srcPath = App.srcPath
 
   screenSplashPath = "loader!" + srcPath + "scripts/screen.splash.js"
   installScreenPath = "loader!" + srcPath + "scripts/screen.install.js"
