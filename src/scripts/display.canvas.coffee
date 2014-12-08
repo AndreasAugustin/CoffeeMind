@@ -35,6 +35,7 @@ App.coffeeMind.display = do () ->
   images = []
   numColors = 0
   srcPath = ""
+  imagePath = ""
 
   ###*
   # @method init init the module
@@ -59,6 +60,8 @@ App.coffeeMind.display = do () ->
     numColors = _options.numColors
     availableColoursCount = _options.availableColours
     imageSize = _options.imageSize
+
+    imagePath = srcPath + "images/forms_" + imageSize + ".png"
 
     canvas = document.createElement("canvas")
     ctx = canvas.getContext("2d")
@@ -265,7 +268,7 @@ App.coffeeMind.display = do () ->
   # @param {Array} guessColors
   ###
   drawSolution = (guessColors) ->
-    image = images["images/forms_" + imageSize + ".png"]
+    image = images[imagePath]
     len = guessColors.length
 
     for x in [0..len-1]
@@ -284,7 +287,7 @@ App.coffeeMind.display = do () ->
   # @method drawAvailableColours draws the available colours
   ###
   drawAvailableColours = () ->
-    image = images[srcPath + "images/forms_" + imageSize + ".png"]
+    image = images[imagePath]
 
     for x in [0..availableColoursCount-1]
       availableColorsCtx.drawImage(image, x*imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
@@ -336,7 +339,7 @@ App.coffeeMind.display = do () ->
       return null
 
     # draw image
-    image = images["images/forms_" + imageSize + ".png"];
+    image = images[imagePath];
     ctx.drawImage(image, type * imageSize, 0, imageSize, imageSize, x * imageSize, y*imageSize, imageSize, imageSize)
     return null
 
