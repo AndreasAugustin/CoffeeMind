@@ -27,11 +27,13 @@ describe 'Test for the board', () ->
 
   it 'sets board', () ->
     expect(board).not.toBe undefined
+    return null
 
   it para1 = 'is possible to init the module', () ->
     result = initBoard(para1)
 
     expect(result).toBe null
+    return null
 
   it para2 = 'is possible to print', () ->
     initBoard(para2)
@@ -41,6 +43,7 @@ describe 'Test for the board', () ->
     result = board.print()
 
     expect(result).toBe null
+    return null
 
   it para3 = "is possible to get the solution", () ->
     initBoard(para3)
@@ -51,6 +54,7 @@ describe 'Test for the board', () ->
     if solution.length > 0
       expect(solution[0] >=0).toBeTruthy()
       expect(solution[0] < settings.availableColours).toBeTruthy()
+    return null
 
   it para4 = "is possible to get the color at various positions", () ->
     initBoard(para4)
@@ -59,6 +63,7 @@ describe 'Test for the board', () ->
     result = board.getColor(x1, y1)
 
     expect(result).toBe -1
+    return null
 
   it para5 = "is possible to set the next color", () ->
     initBoard(para5)
@@ -68,11 +73,14 @@ describe 'Test for the board', () ->
     board.nextColor(x1, y1)
     result = board.getColor(x1, y1)
 
-    expect(result).toBe -1
+    expect(result).toBe 0
+    return null
+
 
 
   # Helper method to init the board
   initBoard = (logMessage) ->
-    return board.init () ->
+    board.init () ->
       console.log logMessage + " callback called"
+    return null
 

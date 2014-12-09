@@ -26,7 +26,7 @@ App.coffeeMind.board = do () ->
   allowMultipleColor = false
   # 2-dim array with color (int) [x][y]. The x value points to column,
   # the y value points to row. The default value is -1 (no color)
-  colors = 0
+  colors = []
   guessColors = []
   availableColoursCount = 0
   currentRow = 0
@@ -74,7 +74,7 @@ App.coffeeMind.board = do () ->
   # @method setColors defines the colors which the player needs to guess
   ###
   setColors = () ->
-    for x in [0..cols-1]
+    for x in [0...cols]
       type = randomColor()
       if allowMultipleColor isnt true
         while rowHasDifferentColors(guessColors, type) is false
@@ -90,11 +90,14 @@ App.coffeeMind.board = do () ->
   # @returns {boolean} true if the row got different colors, false else
   ###
   rowHasDifferentColors = (row, type) ->
-    if row?
+    if row
       length = row.length
-      counter = length < cols ? length : cols
+      if length < cols
+        counter = length
+      else
+        counter = cols
 
-      for y in [0..counter-1]
+      for y in [0...counter]
         if row[y] is type
           return false
 
@@ -106,16 +109,17 @@ App.coffeeMind.board = do () ->
   # @return {Int} The color
   ###
   randomColor = () ->
-    return Math.floor(Math.random() * availableColoursCount)
+    rand = Math.floor(Math.random() * availableColoursCount)
+    return rand
 
   ###
   # @method createBoard creates the board
   ###
   createBoard = () ->
     board = []
-    for y in [0..rows-1]
+    for y in [0...rows]
       board[y] = []
-      for x in  [0..cols-1]
+      for x in  [0...cols]
         board[y][x] = -1
 
     colors = board
@@ -126,7 +130,7 @@ App.coffeeMind.board = do () ->
   ###
   print = () ->
     str = ""
-    for x in [0..cols-1]
+    for x in [0...cols]
       str += guessColors[x]
       str += "\r\n"
 
@@ -146,7 +150,7 @@ App.coffeeMind.board = do () ->
     rightPosition = 0
 
     # security check if all colors are chosen for the row
-    for x in [0..cols-1]
+    for x in [0...cols]
       if colors[rowNumber][x] is -1
         return {
           rightPosition: -1
@@ -154,8 +158,8 @@ App.coffeeMind.board = do () ->
           rowNumber: rowNumber
         }
 
-    for z in [0..cols-1]
-      for y in [0..cols-1]
+    for z in [0...cols]
+      for y in [0...cols]
         if colors[rowNumber][z] is guessColors[y]
           if z is y
             rightPosition++
@@ -183,7 +187,7 @@ App.coffeeMind.board = do () ->
   ###
   getSolution = () ->
     copy = []
-    for x in [0..cols-1]
+    for x in [0...cols]
       copy[x] = guessColors[x]
     return copy
 
@@ -243,7 +247,9 @@ App.coffeeMind.board = do () ->
 
     colors[y][x] = _nextColor
 
-    return colors[y][x]
+    color = colors[y][x]
+
+    return color
 
   ###
   # @method getColor
@@ -252,7 +258,8 @@ App.coffeeMind.board = do () ->
   # @return {Int} the color at x, y
   ###
   getColor = (x, y) ->
-    return colors[y][x]
+    color = colors[y][x]
+    return color
 
   return {
     init: init
