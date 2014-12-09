@@ -88,7 +88,7 @@ App.coffeeMind = do () ->
   rect = imageProto.getBoundingClientRect()
   console.log "proto-image bounding width (px):" + rect.width
 
-  settings.imageSize = rect.width;
+  settings.imageSize = rect.width
 
   getLoadProgress = () ->
     if numPreload > 0

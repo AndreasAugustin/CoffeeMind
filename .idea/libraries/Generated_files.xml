@@ -5,9 +5,13 @@
         <item url="file://$PROJECT_DIR$/spec/boardSpec.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/display.canvas.js" />
         <item url="file://$PROJECT_DIR$/gulpfile.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/board.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/loader.js" />
         <item url="file://$PROJECT_DIR$/spec/inputSpec.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/plugins.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/input.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/screen.game.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/game.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -29,8 +33,8 @@
       <root url="file://$PROJECT_DIR$/spec/inputSpec.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/plugins.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/input.js" />
-      <root url="file://$PROJECT_DIR$/src/scripts/game.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/requestAnimationFrame.js" />
+      <root url="file://$PROJECT_DIR$/src/scripts/game.js" />
       <root url="file://$PROJECT_DIR$/spec/boardSpec.js" />
       <root url="file://$PROJECT_DIR$/gulpfile.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/board.js" />

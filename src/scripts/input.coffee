@@ -47,7 +47,7 @@ App.coffeeMind.input = do () ->
       return null
 
     _$(document).bind "keydown", (event) ->
-      keyName = keys[event.keyCode];
+      keyName = keys[event.keyCode]
       if keyName && _options.controls[keyName]
         event.preventDefault()
         trigger(_options.controls[keyName])
@@ -82,7 +82,7 @@ App.coffeeMind.input = do () ->
     # trigger functions bound to action
     trigger(action, mastermindX, mastermindY)
     # prevent default click behavior
-    event.preventDefault();
+    event.preventDefault()
     return null
 
   ###
@@ -106,8 +106,8 @@ App.coffeeMind.input = do () ->
     args = Array.prototype.slice.call(arguments, 1)
 
     if handlers
-      len = handlers.length;
-      for i in [0..len-1]
+      len = handlers.length
+      for i in [0...len]
         handlers[i].apply(null, args)
 
     return null

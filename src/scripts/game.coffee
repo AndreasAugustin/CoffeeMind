@@ -21,6 +21,7 @@ App.coffeeMind.game = do () ->
 
   _options = {}
   _$ = {}
+  _screens = []
 
   ###
   # @method setup
@@ -28,6 +29,7 @@ App.coffeeMind.game = do () ->
   setup = (options, $) ->
     _options = $.extend {}, options
     _$ = $
+    _screens = App.coffeeMind.screens
     createBackground()
     return null
 
@@ -82,15 +84,14 @@ App.coffeeMind.game = do () ->
     if $activeScreen.length > 0
       $activeScreen.removeClass("active")
 
-    args = [_$]
     # extract screen parameters from arguments
-    args = args.concat(Array.prototype.slice.call(arguments, 1))
+    args = [_$].concat(Array.prototype.slice.call(arguments, 1))
 
     # run the screen module
-    App.coffeeMind.screens[screenId].run.apply(App.coffeeMind.screens[screenId], args)
+    _screens[screenId].run.apply(_screens[screenId], args)
 
     # display the screen html
-    $screen.addClass("active");
+    $screen.addClass("active")
 
 
   return {

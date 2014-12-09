@@ -98,14 +98,15 @@ App.coffeeMind.display = do () ->
   ###
   levelUp = (callback) ->
     beforeMethod = (pos) ->
-      for y in [0..rows-1]
-        for x in [0..Math.floor(pos * rows * 2)]
+      for y in [0...rows]
+        for x in [0...Math.floor(pos * rows * 2)]
           if (x > 0 && x < cols) #boundary check
             clearImage(x, y) # clear all images
 
     renderMethod = (pos) ->
       ctx.save() # save state
       ctx.globalCompositeOperation = "lighter"
+      # TODO do something
 
     addAnimation(1000, beforeMethod, renderMethod, done: callback)
     return null
@@ -135,7 +136,7 @@ App.coffeeMind.display = do () ->
     n = anims.length
 
     if n > 0
-      for i in [0..n-1]
+      for i in [0...n]
         anim = anims[i]
         if anim.fncs.before
           anim.fncs.before(anim.pos)
@@ -171,11 +172,11 @@ App.coffeeMind.display = do () ->
     solutionCanvas.height = imageSize
     solutionCtx.fillStyle = "rgba(255, 235, 255, 0.15)"
 
-    for x in  [0..availableColoursCount-1]
+    for x in  [0...availableColoursCount]
       if x % 2 is 0
         solutionCtx.fillRect x * imageSize, x * imageSize, imageSize, imageSize
 
-      $solutionElement.append(solutionCanvas);
+      $solutionElement.append(solutionCanvas)
 
     return null
 
@@ -191,13 +192,13 @@ App.coffeeMind.display = do () ->
     availableColours.height = imageSize
     availableColorsCtx.fillStyle = "rgba(255, 235, 255, 0.15)"
 
-    for x in [0..availableColoursCount-1]
+    for x in [0...availableColoursCount]
       if x % 2 is 0
         availableColorsCtx.fillRect(
           x * imageSize, x * imageSize,
           imageSize, imageSize)
 
-      $availableColourElement.append(availableColours);
+      $availableColourElement.append(availableColours)
 
     return null
 
@@ -215,8 +216,8 @@ App.coffeeMind.display = do () ->
 
     bgCtx.fillStyle = "rgba(255, 235, 255, 0.15)"
 
-    for x in [0..cols-1]
-      for y in [0..rows-1]
+    for x in [0...cols]
+      for y in [0...rows]
         if (x + y) % 2 is 0
           bgCtx.fillRect(cols * imageSize, y * imageSize, imageSize, imageSize)
 
@@ -254,13 +255,13 @@ App.coffeeMind.display = do () ->
   ###
   reset = () ->
     _options = App.settings
-    cols = _options.cols;
-    rows = _options.rows;
-    availableColoursCount = _options.availableColours;
-    imageSize = _options.imageSize;
-    canvas.width = canvas.width; # to reset the canvas
+    cols = _options.cols
+    rows = _options.rows
+    availableColoursCount = _options.availableColours
+    imageSize = _options.imageSize
+    canvas.width = canvas.width # to reset the canvas
 
-    hideSolution();
+    hideSolution()
     return null
 
   ###
@@ -271,8 +272,8 @@ App.coffeeMind.display = do () ->
     image = images[imagePath]
     len = guessColors.length
 
-    for x in [0..len-1]
-      solutionCtx.drawImage(image, guessColors[x]*imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
+    for x in [0...len]
+      solutionCtx.drawImage(image, guessColors[x] * imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
 
     return null
 
@@ -289,8 +290,8 @@ App.coffeeMind.display = do () ->
   drawAvailableColours = () ->
     image = images[imagePath]
 
-    for x in [0..availableColoursCount-1]
-      availableColorsCtx.drawImage(image, x*imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
+    for x in [0...availableColoursCount]
+      availableColorsCtx.drawImage(image, x * imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
     return null
 
   ###
@@ -304,10 +305,10 @@ App.coffeeMind.display = do () ->
     z = cols
 
     # paint right colors
-    ctx.fillStyle = "rgba(0, 12, 210, 0.15)";
-    ctx.strokeStyle = "red";
+    ctx.fillStyle = "rgba(0, 12, 210, 0.15)"
+    ctx.strokeStyle = "red"
 
-    for x in [0..rightColor-1]
+    for x in [0...rightColor]
       ctx.strokeRect(z  * imageSize + x * imageSize/numColors, rowNumber * imageSize, imageSize/numColors, imageSize/2)
       ctx.fillRect(z  * imageSize + x * imageSize/numColors, rowNumber * imageSize, imageSize/numColors, imageSize/2)
 
@@ -315,7 +316,7 @@ App.coffeeMind.display = do () ->
     ctx.fillStyle = "red"
     ctx.strokeStyle = "rgba(0, 12, 210, 0.15)"
 
-    for x in [0..rightPosition-1]
+    for x in [0...rightPosition]
       ctx.strokeRect(z * imageSize + x * imageSize/numColors, rowNumber * imageSize + imageSize/2, imageSize/numColors, imageSize/2)
 
       ctx.fillRect(z * imageSize + x * imageSize/numColors, rowNumber * imageSize + imageSize/2, imageSize/numColors, imageSize/2)
@@ -335,11 +336,11 @@ App.coffeeMind.display = do () ->
 
     # check if there is no color chosen
     if type is -1
-      ctx.clearRect(x * imageSize, y*imageSize, imageSize, imageSize)
+      ctx.clearRect(x * imageSize, y * imageSize, imageSize, imageSize)
       return null
 
     # draw image
-    image = images[imagePath];
+    image = images[imagePath]
     ctx.drawImage(image, type * imageSize, 0, imageSize, imageSize, x * imageSize, y*imageSize, imageSize, imageSize)
     return null
 
@@ -352,8 +353,8 @@ App.coffeeMind.display = do () ->
   renderCursor = (x, y, opacity) ->
     cursor = cursor || {}
 
-    cursor.x = x;
-    cursor.y = y;
+    cursor.x = x
+    cursor.y = y
 
     if ctx
       opacity = opacity || 0.8
@@ -362,7 +363,7 @@ App.coffeeMind.display = do () ->
       ctx.lineWidth = 0.05 * imageSize
       ctx.strokeStyle = "rgba(250, 250, 150," + opacity + ")"
       ctx.strokeRect((x + 0.05) * imageSize, (y + 0.05)  * imageSize, 0.9 * imageSize, 0.9 * imageSize)
-      ctx.restore();
+      ctx.restore()
 
     return null
 

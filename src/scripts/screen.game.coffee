@@ -70,7 +70,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
     if delta < 0
       gameOver()
     else
-      $progress.width(percent + "%");
+      $progress.width(percent + "%")
       gameState.timer = setTimeout(setLevelTimer, 30)
 
     return null
@@ -268,7 +268,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
     display.myDrawImage(x, y, color)
     unRenderCursor()
     setCursor(x, y)
-    console.log("screen.game nextColor: Color increased at: Column: " + x + "Row: " + y + "New color: " + color);
+    console.log("screen.game nextColor: Color increased at: Column: " + x + "Row: " + y + "New color: " + color)
     return null
 
   ###
@@ -371,7 +371,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
       cursor.y = y
 
     display.renderCursor(x, y, 0.8)
-    console.log("Cursor set: column: " + cursor.x + "Row: " + cursor.y);
+    console.log("Cursor set: column: " + cursor.x + "Row: " + cursor.y)
     return null
 
   return {
