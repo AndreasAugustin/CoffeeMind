@@ -259,28 +259,6 @@ App.coffeeMind.screens["game-screen"] = do () ->
       x = cursor.x
       y = cursor.y
 
-    color =  board.nextColor(x, y)
-    if color < -1
-      return
-
-    return null
-
-    display.myDrawImage(x, y, color)
-    unRenderCursor()
-    setCursor(x, y)
-    console.log("screen.game nextColor: Color increased at: Column: " + x + "Row: " + y + "New color: " + color)
-    return null
-
-  ###
-  # @method nextColor
-  # @param {Int} x
-  # @param {Int} y
-  ###
-  nextColor = (x, y) ->
-    if isNaN(x) || isNaN(y)
-      x = cursor.x
-      y = cursor.y
-
 
     color =  board.nextColor(x, y)
     if(color < -1)

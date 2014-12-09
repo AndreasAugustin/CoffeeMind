@@ -166,6 +166,8 @@ App.coffeeMind.board = do () ->
           else
             rightColor++
 
+    currentRow--
+
     return {
       rightPosition: rightPosition
       rightColor: rightColor
@@ -177,9 +179,7 @@ App.coffeeMind.board = do () ->
   #           reduces the current row by 1
   ###
   checkColors = () ->
-    checkGuessedColors(currentRow)
-    currentRow--
-    return null
+    return checkGuessedColors(currentRow)
 
   ###*
   # @method getSolution
@@ -198,8 +198,7 @@ App.coffeeMind.board = do () ->
   # @return {Int} the new color
   ###
   nextColor = (x, y) ->
-    changeColor(x, y, 1)
-    return null
+    return changeColor(x, y, 1)
 
   ###*
   # @method previousColor changes the selected color of a cell
@@ -209,8 +208,7 @@ App.coffeeMind.board = do () ->
   # @return {Int} the new color
   ###
   previousColor = (x, y) ->
-    changeColor(x, y, -1)
-    return null
+    return changeColor(x, y, -1)
 
   ###*
   # @method changeColor changes the color by a number
@@ -228,6 +226,10 @@ App.coffeeMind.board = do () ->
 
     currentColor = colors[y][x]
     nColor = currentColor + dColor
+
+    if nColor < -1
+      colors[y][x] = -1
+      return -1
 
     if nColor >= availableColoursCount
       colors[y][x] = -1
