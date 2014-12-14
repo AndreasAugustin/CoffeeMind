@@ -17,13 +17,18 @@ App.coffeeMind.screens["game-screen"] = do () ->
   _$ = {}
   cursor = {}
   board = {}
+  game = {}
   display = {}
   input = {}
   cols = 0
   rows = 0
   gameState =
     level: 0
+    score: 0
     timer: {}
+  paused = false
+  pauseTime = 0
+  storage = {}
 
   ###
   # @method setup
@@ -34,6 +39,8 @@ App.coffeeMind.screens["game-screen"] = do () ->
     board = App.coffeeMind.board
     display = App.coffeeMind.display
     input = App.coffeeMind.input
+    game = App.coffeeMind.game
+    storage = App.coffeeMind.storage
 
     cols = _options.cols
     rows = _options.rows
@@ -48,6 +55,81 @@ App.coffeeMind.screens["game-screen"] = do () ->
     input.bind("getSolution", getSolution)
 
     bindButtons()
+    _$("#game-screen button[name='exit']").bind 'click', () ->
+      togglePause(true)
+      exitGame = App.confirm("Do you want to return to the main menu?")
+      togglePause(false)
+      if exitGame is true
+        saveGameData()
+        stopGame()
+        game.showScreen('main-menu')
+
+      return null
+
+    return null
+
+  ###
+  # @method startGame
+  ###
+  startGame = () ->
+    activeGame = storage.get("activeGameData")
+
+    if activeGame
+      useActiveGame = App.confirm("Do you want to continue your previous game?")
+
+    if useActiveGame is true
+      gameState.level = activeGame.level
+      gameState.score = activeGame.score
+      solution = activeGame.solution
+
+    ###board.initialize solution, () ->
+      display.initialize () ->
+
+        return null
+      return null###
+
+    return null
+
+  ###
+  # @method saveGameData
+  ###
+  saveGameData = () ->
+    storage.set "activeGameData",
+      level: gameState.level
+      score: gameState.score
+      time: Date.now() - gameState.startTime
+      solution: board.getSolution()
+
+    return null
+
+  ###
+  # @method togglePause
+  # @param {Boolean} enable
+  ###
+  togglePause = (enable) ->
+    if enable is paused
+      return
+    overlay = _$("#game-screen .pause-overlay")[0]
+    paused = enable
+
+    displ = overlay.style.display
+    if paused is true
+      displ = "block"
+      clearTimeout(gameState.timer)
+      gameState.timer = 0
+      pauseTime = Date.now()
+    else
+      displ = "none"
+      gameState.startTime += Date.now() - pauseTime
+      setLevelTimer(false)
+
+    return null
+
+  ###
+  # @method stopGame
+  ###
+  stopGame = () ->
+    clearTimeout(gameState.timer)
     return null
 
   ###

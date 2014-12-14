@@ -17,6 +17,9 @@ App.coffeeMind = do () ->
 
   srcPath = App.srcPath
 
+  storage = "loader!" + srcPath + "scripts/storage.js"
+  storageCookies = "loader!" + srcPath + "scripts/storage.cookie.js"
+
   screenSplashPath = "loader!" + srcPath + "scripts/screen.splash.js"
   installScreenPath = "loader!" + srcPath + "scripts/screen.install.js"
 
@@ -27,6 +30,7 @@ App.coffeeMind = do () ->
   mainMenuPath = "loader!" + srcPath + "scripts/screen.main-menu.js"
   displayCanvasPath = "loader!" + srcPath + "scripts/display.canvas.js"
   gameScreenPath = "loader!" + srcPath + "scripts/screen.game.js"
+  aboutPath = "loader!" + srcPath + "scripts/screen.about.js"
 
   settings =
     rows: 10
@@ -100,6 +104,11 @@ App.coffeeMind = do () ->
 
   # loading stage 1
   Modernizr.load
+    test: Modernizr.localstorage
+    yep: storage
+    nope: storageCookies
+
+  Modernizr.load
     load: [gamePath]
     test: Modernizr.standalone
     yep: screenSplashPath
@@ -129,6 +138,7 @@ App.coffeeMind = do () ->
           displayCanvasPath
           gameScreenPath
           imagesPath
+          aboutPath
       ],
       complete: () ->
         console.log "stage 2 loaded"

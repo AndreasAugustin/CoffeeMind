@@ -2,16 +2,19 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/spec/boardSpec.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/display.canvas.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/storage.cookie.js" />
+        <item url="file://$PROJECT_DIR$/spec/inputSpec.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/plugins.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/storage.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/input.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/storage.cookie.js" />
+        <item url="file://$PROJECT_DIR$/src/scripts/game.js" />
+        <item url="file://$PROJECT_DIR$/spec/boardSpec.js" />
         <item url="file://$PROJECT_DIR$/gulpfile.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/board.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/loader.js" />
-        <item url="file://$PROJECT_DIR$/spec/inputSpec.js" />
-        <item url="file://$PROJECT_DIR$/src/scripts/plugins.js" />
-        <item url="file://$PROJECT_DIR$/src/scripts/input.js" />
         <item url="file://$PROJECT_DIR$/src/scripts/screen.game.js" />
-        <item url="file://$PROJECT_DIR$/src/scripts/game.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -31,13 +34,17 @@
       <root url="file://$PROJECT_DIR$/src/scripts/display.canvas.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/screen.splash-install.js" />
       <root url="file://$PROJECT_DIR$/spec/inputSpec.js" />
+      <root url="file://$PROJECT_DIR$/src/scripts/storage.cookie.js" />
+      <root url="file://$PROJECT_DIR$/src/scripts/storage.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/plugins.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/input.js" />
+      <root url="file://$PROJECT_DIR$/src/scripts/storage.cookie.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/requestAnimationFrame.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/game.js" />
       <root url="file://$PROJECT_DIR$/spec/boardSpec.js" />
       <root url="file://$PROJECT_DIR$/gulpfile.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/board.js" />
+      <root url="file://$PROJECT_DIR$/src/scripts/screen.about.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/loader.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/screen.game.js" />
       <root url="file://$PROJECT_DIR$/src/scripts/screen.main-menu.js" />

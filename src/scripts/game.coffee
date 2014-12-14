@@ -14,7 +14,6 @@ App.coffeeMind = App.coffeeMind || {}
 # The board namespace
 #
 # @method App.game
-# @param {jQuery} $
 # @return {Object} API functions.
 ###
 App.coffeeMind.game = do () ->
