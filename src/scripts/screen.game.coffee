@@ -69,28 +69,6 @@ App.coffeeMind.screens["game-screen"] = do () ->
     return null
 
   ###
-  # @method startGame
-  ###
-  startGame = () ->
-    activeGame = storage.get("activeGameData")
-
-    if activeGame
-      useActiveGame = App.confirm("Do you want to continue your previous game?")
-
-    if useActiveGame is true
-      gameState.level = activeGame.level
-      gameState.score = activeGame.score
-      solution = activeGame.solution
-
-    ###board.initialize solution, () ->
-      display.initialize () ->
-
-        return null
-      return null###
-
-    return null
-
-  ###
   # @method saveGameData
   ###
   saveGameData = () ->
@@ -226,6 +204,22 @@ App.coffeeMind.screens["game-screen"] = do () ->
       return null
 
     resetCursor()
+
+    activeGame = storage.get("activeGameData")
+
+    if activeGame
+      useActiveGame = App.confirm("Do you want to continue your previous game?")
+
+    if useActiveGame is true
+      gameState.level = activeGame.level
+      gameState.score = activeGame.score
+      solution = activeGame.solution
+
+    ###board.initialize solution, () ->
+      display.initialize () ->
+
+        return null
+      return null###
     return null
 
   ###

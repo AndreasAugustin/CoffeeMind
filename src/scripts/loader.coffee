@@ -31,6 +31,7 @@ App.coffeeMind = do () ->
   displayCanvasPath = "loader!" + srcPath + "scripts/display.canvas.js"
   gameScreenPath = "loader!" + srcPath + "scripts/screen.game.js"
   aboutPath = "loader!" + srcPath + "scripts/screen.about.js"
+  highscoreSreen = "loader!" + srcPath + "scripts/screen.highscore.js"
 
   settings =
     rows: 10
@@ -139,6 +140,7 @@ App.coffeeMind = do () ->
           gameScreenPath
           imagesPath
           aboutPath
+          highscoreSreen
       ],
       complete: () ->
         console.log "stage 2 loaded"
