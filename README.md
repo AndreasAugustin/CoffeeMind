@@ -1,9 +1,9 @@
 # CoffeeMind
-==========
 
 This repository contains the game mastermind written in coffeescript.
 
 ## To play the game
+
 The game is contained in the *build* folder. Just open the *index.html* file in a browser.
 ---
 - You are able to control the game with the following **keys:**
@@ -22,10 +22,11 @@ The game is contained in the *build* folder. Just open the *index.html* file in 
 
 ## To develop the game
 ### Requirements
-- Modernizr
-- jQuery
-- Node.js
--* gulp
--* bower
+For developing the game you need **Node.js** (http://nodejs.org/)
+After you installed *Node.js* you need the node package **Bower** (http://bower.io/). Just type 
+> npm install -g bower
+For installing the further requirements (listed in the **package.json** file, open your terminal and go to the repository root folder. Type
+> npm install
+
 
 
