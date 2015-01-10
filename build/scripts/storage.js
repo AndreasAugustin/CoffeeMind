@@ -1,0 +1,1 @@
+(function(){var e;e="undefined"!=typeof exports&&null!==exports?exports:window,e.coffeeMind=e.coffeeMind||{},e.coffeeMind.storage=function(){var t,n,r;return t=e.localStorage,r=function(e,n){return n=JSON.stringify(n),t.setItem(e,n),null},n=function(e){var n,r;r=t.getItem(e);try{return JSON.parse(r)}catch(o){return void(n=o)}return null},{set:r,get:n}}()}).call(this);
