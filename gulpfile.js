@@ -24,19 +24,24 @@
 
   config = {
     src: {
-      main: ['src/**/*.coffee'],
+      main: ['src/scripts/*.coffee'],
       spec: ['spec/**/*Spec.js'],
       features: ['features/*'],
       styles: ['./styles/*.sass'],
-      jquery: ['./bower_components/jquery/dist/jquery.js'],
+      jquery: ['./bower_components/jquery/dist/jquery.min.js'],
       normalize: ['./bower_components/normalize.css/normalize.css'],
-      fontAwesome: ['./bower_components/font-awesome/css/font-awesome.css']
+      fontAwesome: ['./bower_components/font-awesome/css/font-awesome.css'],
+      mainFiles: {
+        error: 'src/404.html',
+        appleIcon: 'src/apple-touch-icon-precomposed.png',
+        favIcon: 'src/favicon.ico',
+        index: 'src/index.html'
+      }
     },
     dest: {
       folder: 'build',
-      file: 'coffeeScript-namespace.js',
-      minFile: 'coffeeScript-namespace.min.js',
       styles: './build/styles',
+      scripts: './build/scripts',
       srcScriptsVendor: './src/scripts/vendor',
       srcStylesVendor: './src/styles/vendor'
     }
@@ -50,8 +55,15 @@
     return gulp.src(config.src.fontAwesome).pipe(gulp.dest(config.dest.srcStylesVendor));
   });
 
-  gulp.task('scripts', function() {
-    return gulp.src(config.src.main).pipe(coffee()).pipe(concat(config.dest.file)).pipe(gulp.dest(config.dest.folder));
+  gulp.task('copy to build folder', function() {
+    gulp.src(config.src.mainFiles.error).pipe(gulp.dest(config.dest.folder));
+    gulp.src(config.src.mainFiles.appleIcon).pipe(gulp.dest(config.dest.folder));
+    gulp.src(config.src.mainFiles.favIcon).pipe(gulp.dest(config.dest.folder));
+    return gulp.src(config.src.mainFiles.index).pipe(gulp.dest(config.dest.folder));
+  });
+
+  gulp.task('build scripts', function() {
+    return gulp.src(config.src.main).pipe(coffee()).pipe(uglify()).pipe(gulp.dest(config.dest.scripts));
   });
 
   gulp.task('jasmine', function() {
