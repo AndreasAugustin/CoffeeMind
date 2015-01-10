@@ -1,36 +1,41 @@
-# CoffeeMind
+#CoffeeMind
+This repository contains the game mastermind written in coffeescript.
 
-	This repository contains the game mastermind written in coffeescript.
+##To play the game
 
-## To play the game
+The game is contained in the **build** folder. Just open the *index.html* file in a browser.
 
-	The game is contained in the *build* folder. Just open the *index.html* file in a browser.
 ---
 - You are able to control the game with the following **keys:**
  	- left arrow (&#8592;): Go to the left square.
   	- right arrow (&#8594;): Go to the right square.
   	- up arrow (&#8593;): Next color.
   	- down arrow (&#8595;): Previous color.
-  	- space (&#x02294;):
-  	- return (&#9166;): 
+  	- return (&#9166;): When every possible field has a color set, the next row is possible and you get hints for your selection.
+	  - space (&#x02294;): Shows the solution.
 - or with the **mouse**:
   	- left-click on square: next color
-  	- click on search symbol:
-  	- click on symbol:
-  	- click on symbol:
-- On the right side there will be *two* different colors which will chow you how many colors are right (and on the right position)
----
-## To develop the game
+  	- click on reload symbol: Starts a new game.
+  	- click on search symbol: (same as return (&#9166;))
+  	- click on information symbol: Shows the solution (Same as  space (&#x02294;))
+- on the right side there will be *two* different colors which will chow you how many colors are right (and on the right position)
+
+## For further developments
+The game is developed with **CoffeeScript** 
 
 ### Requirements
-	The game is developed with **CoffeeScript** 
+
 
 For developing the game you need **Node.js** (http://nodejs.org/)
 After you installed *Node.js* you need the node package **Bower** (http://bower.io/). Just type 
-> npm install -g bower
+
+	npm install -g bower
 
 For installing the further requirements (listed in the **package.json** file, open your terminal and go to the repository root folder. Type
-> npm install
+
+	npm install
+
+The project uses **gulp** as task runner.
 
 ---
 ### Some legal stuff
@@ -45,12 +50,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #### External resources
 - Node
 - Bower
+	- jQuery
 - Cucumber/Gherkin
 - Modernizr
-- jQuery
-- Jasmine
-- Coffeescript
+- Jasmine-node
+- JSDom
+- run-sequence
+- CoffeeScript
 - Gulp
+	- gulp-coffee
+	- gulp-coffeelint
+	- gulp-concat
+	- gulp-cucumber
+	- gulp-jasmine
+	- gulp-notify
+	- gulp-ruby-sass
+	- gulp-uglify
+	- gulp-util
 
 
 
