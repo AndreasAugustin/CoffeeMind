@@ -1,6 +1,6 @@
 # @copyright Copyright (c) 2014 andy
 #               All rights reserved.
-# @file screen.game
+# @file display.canvas
 # @company none
 # @licence MIT licence.
 # @author andy
@@ -32,6 +32,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
   ###
   # @method setup
+  # @param {jQuery} $
   ###
   setup = ($) ->
     _options = App.settings
@@ -112,7 +113,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
   ###
   # @method setLevelTimer
-  # @param {method} reset
+  # @param {function} reset
   ###
   setLevelTimer = (reset) ->
     if gameState.timer
@@ -159,7 +160,7 @@ App.coffeeMind.screens["game-screen"] = do () ->
 
   ###
   # @method announce
-  # @para {String} str the message
+  # @param {String} str the message
   ###
   announce = (str) ->
     $element = _$("#game-screen .announcement")

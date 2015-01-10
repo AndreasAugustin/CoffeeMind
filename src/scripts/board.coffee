@@ -1,21 +1,20 @@
 # @copyright Copyright (c) 2014 andy
 #               All rights reserved.
-# @file board
+# @file display.canvas
 # @company none
 # @licence MIT licence.
 # @author andy
 # @email andy.augustin@t-online.de
 
-
 App = exports ? window
 
 App.coffeeMind = App.coffeeMind || {}
-###*
+
 # The board namespace
 #
-# @method App.board
+# @method #App.coffeeMind.board()
 # @return {Object} API functions.
-###
+#
 App.coffeeMind.board = do () ->
 
   _options = {}
@@ -31,17 +30,9 @@ App.coffeeMind.board = do () ->
   availableColoursCount = 0
   currentRow = 0
 
-  ###*
   # @method init init the module
-  # @param {Object} options
-  #     @option {Int} rows
-  #     @option {Int} cols
-  #     @option {Int} availableColours
-  #     @option {Int} baseScore
-  #     @option {Int} numColors
-  #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method. Called at end of init.
-  ###
+  #
   init = (callback) ->
     _options = App.settings
     rows = _options.rows
@@ -57,22 +48,15 @@ App.coffeeMind.board = do () ->
     callback()
     return null
 
-  ###*
   # @method reset resets the module to defaults
-  # @param {Object} options
-  #     @option {Int} availableColours
-  #     @option {Int} baseScore
-  #     @option {Int} numColors
-  #     @option {Boolean} allowMultipleColors
   # @param {method} callback Callback method.
-  ###
+  #
   reset = (callback) ->
     init(callback)
     return null
 
-  ###*
   # @method setColors defines the colors which the player needs to guess
-  ###
+  #
   setColors = () ->
     for x in [0...cols]
       type = randomColor()
@@ -83,12 +67,11 @@ App.coffeeMind.board = do () ->
       guessColors[x] = type
     return null
 
-  ###
   # @method rowHasDifferentColors checks if the row got different colors
   # @param {Array} row the row to check
   # @param {int} type the color type
-  # @returns {boolean} true if the row got different colors, false else
-  ###
+  # @return {Boolean} true if the row got different colors, false else
+  #
   rowHasDifferentColors = (row, type) ->
     if row
       length = row.length
@@ -103,18 +86,16 @@ App.coffeeMind.board = do () ->
 
     return true
 
-  ###
   # @method randomColor creates a random color (random number between
   #                   0 - numberOfColors)
   # @return {Int} The color
-  ###
+  #
   randomColor = () ->
     rand = Math.floor(Math.random() * availableColoursCount)
     return rand
 
-  ###
   # @method createBoard creates the board
-  ###
+  #
   createBoard = () ->
     board = []
     for y in [0...rows]
@@ -125,9 +106,8 @@ App.coffeeMind.board = do () ->
     colors = board
     return null
 
-  ###
   # @method print prints the solution
-  ###
+  #
   print = () ->
     str = ""
     for x in [0...cols]
@@ -137,14 +117,13 @@ App.coffeeMind.board = do () ->
     console.log(str)
     return null
 
-  ###
   # @method checkGuessedColors Checks the row for the guessed Colors
   # @param {Int} rowNumber the row number
   # @return {Object} {rightColor: number, rightPosition: number,
   #                rowNumber: int}} The count of right guessed colors
   #                 (without right positions) and the count of right guessed
   #                    colors and positions, number of checked row
-  ###
+  #
   checkGuessedColors = (rowNumber) ->
     rightColor = 0
     rightPosition = 0
@@ -174,49 +153,44 @@ App.coffeeMind.board = do () ->
       rowNumber: rowNumber
     }
 
-  ###*
   # @method checkColors Checks the colors for the current row and
   #           reduces the current row by 1
-  ###
+  #
   checkColors = () ->
     return checkGuessedColors(currentRow)
 
-  ###*
   # @method getSolution
   # @return {Array} the solution
-  ###
+  #
   getSolution = () ->
     copy = []
     for x in [0...cols]
       copy[x] = guessColors[x]
     return copy
 
-  ###*
   # @method nextColor changes the selected color of a cell (increases by one)
   # @param {Int} x the column
   # @param {Int} y the row
   # @return {Int} the new color
-  ###
+  #
   nextColor = (x, y) ->
     return changeColor(x, y, 1)
 
-  ###*
   # @method previousColor changes the selected color of a cell
   #         (decreases by one)
   # @param {Int} x the column
   # @param {Int} y the row
   # @return {Int} the new color
-  ###
+  #
   previousColor = (x, y) ->
     return changeColor(x, y, -1)
 
-  ###*
   # @method changeColor changes the color by a number
   # @param {Int} x the column
   # @param {Int} y the row
   # @param {Int} dColor the difference of the color
   # @return {Int} the new color
-  ###
+  #
   changeColor = (x, y, dColor) ->
     if x is cols
       return -1
@@ -253,12 +227,11 @@ App.coffeeMind.board = do () ->
 
     return color
 
-  ###
   # @method getColor
   # @param {Int} x the column
   # @param {Int} y the row
   # @return {Int} the color at x, y
-  ###
+  #
   getColor = (x, y) ->
     color = colors[y][x]
     return color

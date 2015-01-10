@@ -10,13 +10,13 @@ App = exports ? window
 
 App.coffeeMind = App.coffeeMind || {}
 
-###*
 # The board namespace
 #
-# @method App.display
-# @param {jQuery} $
-# @return {Object} API functions.
-###
+# @method #App.display()
+#   module for displaying
+#   @param {jQuery} $
+#   @return {Object} API functions.
+#
 App.coffeeMind.display = do () ->
   _$ = {}
   canvas = {}
@@ -37,18 +37,9 @@ App.coffeeMind.display = do () ->
   srcPath = ""
   imagePath = ""
 
-  ###*
   # @method init init the module
-  # @param {Object} options
-  #     @option {Int} rows
-  #     @option {Int} cols
-  #     @option {Int} availableColours
-  #     @option {Int} baseScore
-  #     @option {Int} numColors
-  #     @option {Int} imageSize
-  #     @options {Array} images
-  #     @option {Boolean} allowMultipleColors
-  ###
+  # @param {jQuery} $
+  #
   setup = ($) ->
     _$ = $
     _options = App.settings
@@ -81,10 +72,9 @@ App.coffeeMind.display = do () ->
     requestAnimationFrame(cycle)
     return null
 
-  ###
   # @method cycle one animation cycle
   # @param {Time} time
-  ###
+  #
   cycle = (time) ->
     animateCursor(time)
     renderAnimations(time, previousCycle)
@@ -92,10 +82,9 @@ App.coffeeMind.display = do () ->
     requestAnimationFrame(cycle)
     return null
 
-  ###
   # @method levelUp when the player reaches next level
   # @param {method} callback
-  ###
+  #
   levelUp = (callback) ->
     beforeMethod = (pos) ->
       for y in [0...rows]
@@ -111,11 +100,10 @@ App.coffeeMind.display = do () ->
     addAnimation(1000, beforeMethod, renderMethod, done: callback)
     return null
 
-  ###
   # @method addAnimation adds an animation to the animations array
   # @param {Int} runTime the run time of the animation
   # @param {} fncs
-  ###
+  #
   addAnimation = (runTime, fncs) ->
     anim =
       runTime: runTime
@@ -126,11 +114,10 @@ App.coffeeMind.display = do () ->
     animations.push anim
     return null
 
-  ###
   # @method renderAnimation
   # @param {Time} time
   # @param {Time} lastTime
-  ###
+  #
   renderAnimations = (time, lastTime) ->
     anims = animations.slice(0) # slice first
     n = anims.length
@@ -159,9 +146,8 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method createSolutionElement creates the solution element
-  ###
+  #
   createSolutionElement = () ->
     $solutionElement = _$("#game-screen .solution")
 
@@ -180,9 +166,8 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method createAvailableColoursElement creates the available colours element
-  ###
+  #
   createAvailableColoursElement = () ->
     $availableColourElement = _$("#game-screen .availableItems")
     availableColours = document.createElement("canvas")
@@ -202,10 +187,9 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method createBackGround creates the background
   # @return {Element} the background
-  ###
+  #
   createBackground = () ->
     background = document.createElement("canvas")
     bgCtx = background.getContext("2d")
@@ -223,36 +207,17 @@ App.coffeeMind.display = do () ->
 
     return background
 
-  ###*
-  # @method init init the module
-  # @param {Object} options
-  #     @option {Int} rows
-  #     @option {Int} cols
-  #     @option {Int} availableColours
-  #     @option {Int} baseScore
-  #     @option {Int} numColors
-  #     @option {Int} imageSize
-  #     @options {Array} images
-  #     @option {Boolean} allowMultipleColors
+  # @method #init($, callback) init the module
+  # @param {jQuery} $
   # @param {method} callback Callback method. Called at end of init.
-  ###
+  #
   init = ($, callback) ->
     setup($)
     callback()
     return null
 
-  ###*
   # @method reset resets the module
-  # @param {Object} options
-  #     @option {Int} rows
-  #     @option {Int} cols
-  #     @option {Int} availableColours
-  #     @option {Int} baseScore
-  #     @option {Int} numColors
-  #     @option {Int} imageSize
-  #     @options {Array} images
-  #     @option {Boolean} allowMultipleColors
-  ###
+  #
   reset = () ->
     _options = App.settings
     cols = _options.cols
@@ -264,10 +229,9 @@ App.coffeeMind.display = do () ->
     hideSolution()
     return null
 
-  ###
   # @method drawSolution draws the solution
   # @param {Array} guessColors
-  ###
+  #
   drawSolution = (guessColors) ->
     image = images[imagePath]
     len = guessColors.length
@@ -277,16 +241,14 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method hideSolution hides the solution
-  ###
+  #
   hideSolution = () ->
     solutionCanvas.width = solutionCanvas.width # to reset the canvas
     return null
 
-  ###
   # @method drawAvailableColours draws the available colours
-  ###
+  #
   drawAvailableColours = () ->
     image = images[imagePath]
 
@@ -294,10 +256,9 @@ App.coffeeMind.display = do () ->
       availableColorsCtx.drawImage(image, x * imageSize, 0, imageSize, imageSize, x * imageSize, 0, imageSize, imageSize)
     return null
 
-  ###
   # @method drawCheckColors draws the checked colors
   # @param {Object} correctColors
-  ###
+  #
   drawCheckColors = (correctColors) ->
     rightColor = correctColors.rightColor
     rightPosition = correctColors.rightPosition
@@ -323,12 +284,11 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method myDrawImage
   # @param {Int} x the column
   # @param {Int} y the row
   # @param {Int} type the type
-  ###
+  #
   myDrawImage = (x, y, type) ->
     #check if the last column is the clicked one
     if x is cols
@@ -344,12 +304,11 @@ App.coffeeMind.display = do () ->
     ctx.drawImage(image, type * imageSize, 0, imageSize, imageSize, x * imageSize, y*imageSize, imageSize, imageSize)
     return null
 
-  ###
   # @method renderCursor
   # @param {Int} x the column
   # @param {Int} y the row
   # @param {Int} opacity the opacity [0..1]
-  ###
+  #
   renderCursor = (x, y, opacity) ->
     cursor = cursor || {}
 
@@ -367,10 +326,9 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method animateCursor
   # @param {Time} the time
-  ###
+  #
   animateCursor = (time) ->
     if cursor
       opacity = 0.5 + (Math.sin(time / 400) + 1)
@@ -378,12 +336,11 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method unRenderCursor
   # @param {Int} x the current column position
   # @param {Int} y the current row position
   # @param {Int} type the type of the cell
-  ###
+  #
   unRenderCursor = (x, y, type) ->
     if ctx
       clearImage(x, y)
@@ -391,11 +348,10 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method unRenderCursor
   # @param {Int} x the current column position
   # @param {Int} y the current row position
-  ###
+  #
   clearImage = (x, y) ->
     # check boundaries
     if x < 0 || x > cols || y < 0 || y > rows
@@ -409,10 +365,9 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method gameOver
   # @param {method} callback
-  ###
+  #
   gameOver = (callback) ->
     renderMethod = (pos) ->
       canvas.style.left = 0.2 * pos * (Math.random() - 0.5) + "em"
@@ -427,9 +382,8 @@ App.coffeeMind.display = do () ->
 
     return null
 
-  ###
   # @method explode
-  ###
+  #
   explode = (callback) ->
     alert 'game over man :('
     return null
