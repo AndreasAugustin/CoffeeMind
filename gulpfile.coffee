@@ -11,13 +11,13 @@ coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 jasmine = require 'gulp-jasmine'
 uglify = require 'gulp-uglify'
-uglifycss = require('gulp-uglifycss')
+uglifycss = require 'gulp-uglifycss'
 runSequence = require 'run-sequence'
 coffeelint = require 'gulp-coffeelint'
 cucumber = require 'gulp-cucumber'
 sass = require 'gulp-ruby-sass'
 notify = require 'gulp-notify'
-imagemin = require('gulp-imagemin')
+imagemin = require 'gulp-imagemin'
 del = require 'del'
 
 config =

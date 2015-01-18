@@ -66,7 +66,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	- gulp-notify
 	- gulp-ruby-sass
 	- gulp-uglify
+	- gulp-uglifycss
 	- gulp-util
+	- gulp-imagemin
+	- del
 
 
 
