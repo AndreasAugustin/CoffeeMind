@@ -11,7 +11,7 @@ console.log "loading plugins.coffee"
 console.log Modernizr
 
 App = exports ? window
-App.srcPath = "./src/"
+App.srcPath = ""
 
 animationFramePath = App.srcPath + "scripts/requestAnimationFrame.js"
 

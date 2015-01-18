@@ -8,7 +8,7 @@
 
   App = typeof exports !== "undefined" && exports !== null ? exports : window;
 
-  App.srcPath = "./src/";
+  App.srcPath = "";
 
   animationFramePath = App.srcPath + "scripts/requestAnimationFrame.js";
 
