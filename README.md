@@ -1,5 +1,5 @@
 #CoffeeMind
-This repository contains the game mastermind written in coffeescript.
+This repository contains the game mastermind written in CoffeeScript.
 
 ##To play the game
 
@@ -14,7 +14,7 @@ The game is contained in the **build** folder. Just open the *index.html* file i
   	- return (&#9166;): When every possible field has a color set, the next row is possible and you get hints for your selection.
 	  - space (&#x02294;): Shows the solution.
 - or with the **mouse**:
-  	- left-click on square: next color
+  	- left-click on square: Next color.
   	- click on reload symbol: Starts a new game.
   	- click on search symbol: (same as return (&#9166;))
   	- click on information symbol: Shows the solution (Same as  space (&#x02294;))
