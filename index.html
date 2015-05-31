@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Coffeemind by AndreasAugustin</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Coffeemind</h1>
+        <p>Thie repository contains the game mastermind written in coffeescript</p>
+
+        <p class="view"><a href="https://github.com/AndreasAugustin/CoffeeMind">View the Project on GitHub <small>AndreasAugustin/CoffeeMind</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/AndreasAugustin/CoffeeMind/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/AndreasAugustin/CoffeeMind/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/AndreasAugustin/CoffeeMind">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="coffeemind" class="anchor" href="#coffeemind" aria-hidden="true"><span class="octicon octicon-link"></span></a>CoffeeMind</h1>
+
+<p>This repository contains the game mastermind written in CoffeeScript.</p>
+
+<h2>
+<a id="to-play-the-game" class="anchor" href="#to-play-the-game" aria-hidden="true"><span class="octicon octicon-link"></span></a>To play the game</h2>
+
+<p>The game is contained in the <strong>build</strong> folder. Just open the <em>index.html</em> file in a browser.</p>
+
+<hr>
+
+<ul>
+<li>You are able to control the game with the following <strong>keys:</strong>
+
+<ul>
+<li>left arrow (←): Go to the left square.</li>
+<li>right arrow (→): Go to the right square.</li>
+<li>up arrow (↑): Next color.</li>
+<li>down arrow (↓): Previous color.</li>
+<li>return (⏎): When every possible field has a color set, the next row is possible and you get hints for your selection.
+
+<ul>
+<li>space (⊔): Shows the solution.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>or with the <strong>mouse</strong>:
+
+<ul>
+<li>left-click on square: Next color.</li>
+<li>click on reload symbol: Starts a new game.</li>
+<li>click on search symbol: (same as return (⏎))</li>
+<li>click on information symbol: Shows the solution (Same as  space (⊔))</li>
+</ul>
+</li>
+<li>on the right side there will be <em>two</em> different colors which will chow you how many colors are right (and on the right position)</li>
+</ul>
+
+<h2>
+<a id="for-further-developments" class="anchor" href="#for-further-developments" aria-hidden="true"><span class="octicon octicon-link"></span></a>For further developments</h2>
+
+<p>The game is developed with <strong>CoffeeScript</strong> </p>
+
+<h3>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<p>For developing the game you need <strong>Node.js</strong> (<a href="http://nodejs.org/">http://nodejs.org/</a>)
+After you installed <em>Node.js</em> you need the node package <strong>Bower</strong> (<a href="http://bower.io/">http://bower.io/</a>). Just type </p>
+
+<pre><code>npm install -g bower
+</code></pre>
+
+<p>For installing the further requirements (listed in the <strong>package.json</strong> file, open your terminal and go to the repository root folder. Type</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>The project uses <strong>gulp</strong> as task runner.</p>
+
+<hr>
+
+<h3>
+<a id="some-legal-stuff" class="anchor" href="#some-legal-stuff" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some legal stuff</h3>
+
+<p>Copyright (c) 2014, Andreas Augustin. All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h4>
+<a id="external-resources" class="anchor" href="#external-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>External resources</h4>
+
+<ul>
+<li>Node</li>
+<li>Bower
+
+<ul>
+<li>jQuery</li>
+</ul>
+</li>
+<li>Cucumber/Gherkin</li>
+<li>Modernizr</li>
+<li>Jasmine-node</li>
+<li>JSDom</li>
+<li>run-sequence</li>
+<li>CoffeeScript</li>
+<li>Gulp
+
+<ul>
+<li>gulp-coffee</li>
+<li>gulp-coffeelint</li>
+<li>gulp-concat</li>
+<li>gulp-cucumber</li>
+<li>gulp-jasmine</li>
+<li>gulp-notify</li>
+<li>gulp-ruby-sass</li>
+<li>gulp-uglify</li>
+<li>gulp-uglifycss</li>
+<li>gulp-util</li>
+<li>gulp-imagemin</li>
+<li>del</li>
+</ul>
+</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/AndreasAugustin">AndreasAugustin</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
