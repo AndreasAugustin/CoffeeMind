@@ -1,4 +1,6 @@
 #CoffeeMind
+
+[![Join the chat at https://gitter.im/AndreasAugustin/CoffeeMind](https://badges.gitter.im/AndreasAugustin/CoffeeMind.svg)](https://gitter.im/AndreasAugustin/CoffeeMind?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This repository contains the game mastermind written in CoffeeScript.
 
 ##To play the game
