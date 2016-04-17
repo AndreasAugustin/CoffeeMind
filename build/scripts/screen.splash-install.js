@@ -1,1 +1,0 @@
-(function(){var e;e="undefined"!=typeof exports&&null!==exports?exports:window,e.coffeeMind=e.coffeeMind||{},e.coffeeMind.screens=e.coffeeMind.screens||{},e.screens["install-screen"]=function(){return{run:function(){}}}()}).call(this);

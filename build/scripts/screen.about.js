@@ -1,1 +1,0 @@
-(function(){var e;e="undefined"!=typeof exports&&null!==exports?exports:window,e.coffeeMind=e.coffeeMind||{},e.coffeeMind.screens=e.coffeeMind.screens||{},e.coffeeMind.screens.about=function(){var n,f,o,r;return n={},r=$,o=function(n){var f;return r=n,f=e.coffeeMind.game,null},f=function(e){return o(e),null},{run:f}}()}).call(this);

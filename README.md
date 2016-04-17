@@ -7,7 +7,17 @@
 
 This repository contains the game mastermind written in coffeescript.
 
-##To play the game
+## Build
+
+See requirements
+
+    $ gulp build
+    
+## Start the game
+
+Open build/index.html in a browser of your choice
+
+## To play the game
 
 The game is contained in the **build** folder. Just open the *index.html* file in a browser.
 

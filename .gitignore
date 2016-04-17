@@ -4,6 +4,8 @@
 /bower_components/
 /node_modules/
 
+build/
+
 spec/*.js
 spec/*.js.*
 
