@@ -19,6 +19,7 @@ sass = require 'gulp-ruby-sass'
 notify = require 'gulp-notify'
 imagemin = require 'gulp-imagemin'
 del = require 'del'
+jsdoc = require 'gulp-jsdoc'
 
 config =
   src:
@@ -59,6 +60,7 @@ config =
     sass: 'sass'
     sassCompressedCopyToBuild: 'run sass compressed and copy to build'
     buildScripts: 'build scripts and copy uglified to build'
+    jsdoc: 'build jsdocumentation'
 
 
 gulp.task config.tasks.default, () ->
@@ -67,6 +69,9 @@ gulp.task config.tasks.default, () ->
 ###
   Tasks for building
 ###
+
+gulp.task config.tasks.jsdoc, () ->
+  gulp.src("./src/scripts/*.js").pipe jsdoc('.documentation')
 
 gulp.task config.tasks.build, [config.tasks.copyToBuildFolder, config.tasks.sassCompressedCopyToBuild, config.tasks.buildScripts], () ->
   # build task

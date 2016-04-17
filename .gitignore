@@ -3,3 +3,10 @@
 /.sass-cache/
 /bower_components/
 /node_modules/
+
+spec/*.js
+spec/*.js.*
+
+src/styles/*.css
+npm-debug.log
+gulpfile.js.map
