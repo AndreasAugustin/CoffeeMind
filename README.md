@@ -1,8 +1,9 @@
-#CoffeeMind
+CoffeeMind
 =====
 
 [![Join the chat at https://gitter.im/AndreasAugustin/CoffeeMind](https://badges.gitter.im/AndreasAugustin/CoffeeMind.svg)](https://gitter.im/AndreasAugustin/CoffeeMind?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Build Status](https://travis-ci.org/AndreasAugustin/CoffeeMind.svg?branch=master)](https://travis-ci.org/AndreasAugustin/CoffeeMind)
 
 
 This repository contains the game mastermind written in coffeescript.

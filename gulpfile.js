@@ -140,21 +140,21 @@
     })).pipe(gulp.dest(config.dest.srcStyles));
   });
 
-  gulp.task('spec', function(callback) {
-    return runSequence('jasmine', callback);
-  });
-
   gulp.task('coffee-lint', function() {
     return gulp.src(config.src.main).pipe(coffeelint()).pipe(coffeelint.reporter());
   });
 
-  gulp.task('cucumber', function() {
+  gulp.task('buildTestScripts', function() {
+    return gulp.src("spec/*.coffee").pipe(coffee()).pipe(gulp.dest("spec"));
+  });
+
+  gulp.task('cucumber', ['buildTestScripts'], function() {
     return gulp.src(config.src.features).pipe(cucumber({
       'steps': 'features/step_definitions/*.js'
     }));
   });
 
-  gulp.task('jasmine', function() {
+  gulp.task('jasmine', ['buildTestScripts'], function() {
     return gulp.src(config.src.spec).pipe(jasmine()).on('error', notify.onError({
       title: 'Jasmine test failed',
       message: 'One or more tests failed. See the cli for details.'

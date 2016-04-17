@@ -126,22 +126,24 @@ gulp.task config.tasks.sass, () ->
   .pipe(sass("sourcemap=none": true))
   .pipe(gulp.dest(config.dest.srcStyles))
 
-# run all specs
-gulp.task 'spec', (callback) ->
-  runSequence('jasmine', callback)
-
 # run coffee-lint
 gulp.task 'coffee-lint', () ->
   gulp.src(config.src.main)
   .pipe(coffeelint())
   .pipe(coffeelint.reporter())
 
+# Minify and copy all JavaScript
+gulp.task 'buildTestScripts', () ->
+  gulp.src("spec/*.coffee")
+  .pipe(coffee())
+  .pipe(gulp.dest("spec"))
+
 # run cucumber tests
-gulp.task 'cucumber', () ->
+gulp.task 'cucumber', ['buildTestScripts'], () ->
   gulp.src(config.src.features).pipe(cucumber('steps': 'features/step_definitions/*.js'))
 
 # runs jasmine-node tests
-gulp.task 'jasmine', ->
+gulp.task 'jasmine', ['buildTestScripts'], () ->
   gulp.src(config.src.spec)
   .pipe(jasmine())
   .on 'error', notify.onError

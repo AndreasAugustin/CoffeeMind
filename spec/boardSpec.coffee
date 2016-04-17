@@ -73,7 +73,8 @@ describe 'Test for the board', () ->
     board.nextColor(x1, y1)
     result = board.getColor(x1, y1)
 
-    expect(result).toBe 0
+    # Because x1 is 0 the expected result is -1
+    expect(result).toBe -1
     return null
 
 

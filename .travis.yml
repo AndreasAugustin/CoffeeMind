@@ -1,0 +1,9 @@
+language: node_js
+
+before_script:
+  - npm install
+
+script:
+  - gulp build+
+  - gulp cucumber
+  - gulp jasmine
