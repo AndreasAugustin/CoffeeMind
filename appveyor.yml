@@ -5,7 +5,9 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
 
-script:
+test_script:
+  - node --version
+  - npm --version
   - gulp build
   - gulp cucumber
   - gulp jasmine
