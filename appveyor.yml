@@ -8,8 +8,8 @@ install:
 test_script:
   - node --version
   - npm --version
-  - gulp build
-  - gulp cucumber
-  - gulp jasmine
+  - npm run gulp build
+  - npm run gulp cucumber
+  - npm run gulp jasmine
 
 build: off
