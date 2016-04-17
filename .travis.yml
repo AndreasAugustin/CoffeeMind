@@ -4,6 +4,6 @@ before_script:
   - npm install
 
 script:
-  - gulp build+
+  - gulp build
   - gulp cucumber
   - gulp jasmine
