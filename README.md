@@ -7,6 +7,8 @@ CoffeeMind
 
 [![Linux build Status](https://travis-ci.org/AndreasAugustin/CoffeeMind.svg?branch=master)](https://travis-ci.org/AndreasAugustin/CoffeeMind)
 
+[![Dependency Status](https://www.versioneye.com/user/projects/571aa577fcd19a00415b2652/badge.svg?style=flat)](https://www.versioneye.com/user/projects/571aa577fcd19a00415b2652)
+
 This repository contains the game mastermind written in coffeescript.
 
 ## Build
